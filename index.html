@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>觉察释放</title>
+  <title>The-Sedona-Method</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
@@ -34,10 +34,10 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 .title { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 600; color: var(--text); margin: 0 0 0.5rem; letter-spacing: 0.02em; }
 .subtitle { color: var(--text-soft); margin: 0 0 2rem; font-size: 0.95rem; }
-#step-welcome.step.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; padding: 2rem 1rem; }
+#step-welcome.step.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 2rem 1rem; box-sizing: border-box; }
 #step-welcome .title { margin-bottom: 1.5rem; }
-#step-welcome .welcome-quote { margin: 0 0 2rem; width: 100%; max-width: 28em; padding: 0 1rem; }
-#step-welcome .welcome-actions { margin-top: 0.5rem; display: flex; flex-direction: column; align-items: center; gap: 0; }
+#step-welcome .welcome-quote { margin: 0; width: 100%; max-width: 28em; padding: 0 1rem; }
+#step-welcome .welcome-actions { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 0; }
 #step-welcome .welcome-quote-en { margin: 0; font-size: 1.4rem; line-height: 1.9; color: var(--text); font-style: normal; display: block; }
 #step-welcome .welcome-quote-zh { margin: 0.75em 0 0; font-size: 1.25rem; line-height: 1.85; color: var(--text-soft); display: block; }
 #step-welcome .welcome-quote p:nth-child(3) { margin-top: 1.4rem; }
@@ -46,21 +46,24 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 #step-welcome .welcome-actions .btn-heart .heart-icon { width: 40px; height: 40px; }
 #step-welcome .welcome-actions .welcome-hint { font-size: 0.85rem; color: var(--text-soft); font-style: italic; margin: 0.4rem 0 0; display: block; }
 #step-belief.step.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; }
-#step-belief .belief-form { display: flex; flex-direction: column; align-items: flex-start; text-align: left; width: 100%; max-width: 100%; }
-#step-belief .belief-form label { display: block; font-size: 1.35rem; color: var(--text-soft); margin-bottom: 1.25rem; line-height: 1.5; }
-#step-belief .belief-form label .label-italic { font-style: italic; }
-#step-belief .belief-form .btn-primary { width: auto; max-width: none; }
+#step-belief .belief-form { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; max-width: 100%; }
+#step-belief .belief-form label { display: block; font-size: 1.35rem; color: var(--text-soft); margin-bottom: 1.25rem; line-height: 1.5; text-align: center; }
+#step-belief .belief-form .btn-primary { width: auto; max-width: min(280px, calc(100% / 1.1)); }
+#step-belief .belief-input-area { width: 100%; max-width: 100%; }
 #step-belief .belief-input-wrap { width: 100%; max-width: 100%; }
 .belief-form label { display: block; font-size: 0.9rem; color: var(--text-soft); margin-bottom: 0.5rem; }
 .belief-input-wrap { position: relative; }
-.belief-input-note { display: block; width: 100%; margin-top: 0.35rem; font-size: 0.7rem; color: var(--text-soft); opacity: 0.85; text-align: right; font-style: italic; }
-#belief-input { width: 100%; padding: 1rem 1.1rem 2.25rem 1.1rem; font-family: var(--serif); font-size: 0.9rem; font-style: normal; line-height: 1.6; color: #3d3529; background: linear-gradient(135deg, #ebe4d8 0%, #e5ddd0 50%, #e8e0d4 100%); border: 1px solid rgba(180,170,155,0.5); border-radius: 8px; resize: vertical; min-height: 100px; max-height: 50vh; overflow-y: auto; transition: box-shadow var(--transition); box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), 0 2px 12px rgba(0,0,0,0.04); }
+.belief-input-area { position: relative; width: 100%; padding-bottom: 2.25rem; }
+.belief-input-note { position: absolute; right: 2.65rem; bottom: 0.55rem; font-size: 0.7rem; color: var(--text-soft); opacity: 0.85; text-align: right; font-style: italic; white-space: nowrap; pointer-events: none; z-index: 2; }
+#step-belief .belief-form .btn-primary { margin-top: 1.75rem; }
+#belief-input { width: 100%; padding: 1.2rem; font-family: var(--serif); font-size: 0.9rem; font-style: normal; line-height: 1.6; color: #3d3529; background: linear-gradient(135deg, #ebe4d8 0%, #e5ddd0 50%, #e8e0d4 100%); border: 1px solid rgba(180,170,155,0.5); border-radius: 8px; resize: vertical; min-height: calc(4 * 1.6em + 2.4rem); max-height: 38vh; overflow-y: auto; transition: box-shadow var(--transition); box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), 0 2px 12px rgba(0,0,0,0.04); }
 #belief-input::placeholder { color: #7a6f62; opacity: 0.8; }
 #belief-input:focus { outline: none; border-color: rgba(201,122,158,0.5); box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), 0 0 0 2px rgba(201,122,158,0.2); }
 .belief-input-wrap::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 8px; background: radial-gradient(ellipse 80% 50% at 20% 30%, rgba(255,250,245,0.5), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 70%, rgba(245,242,235,0.4), transparent 45%); opacity: 0.85; }
-.quill-icon { position: absolute; right: 0.9rem; bottom: 0.6rem; width: 28px; height: 28px; pointer-events: none; transform-origin: 90% 85%; transition: transform 0.15s ease; z-index: 2; }
-.quill-icon.quill-write { animation: quillDip 0.45s ease-out; }
-@keyframes quillDip { 0% { transform: rotate(0deg) translateY(0); } 35% { transform: rotate(-8deg) translateY(3px); } 70% { transform: rotate(2deg) translateY(1px); } 100% { transform: rotate(0deg) translateY(0); } }
+.belief-heart-icon { position: absolute; right: 0.9rem; bottom: 0.6rem; width: 28px; height: 28px; pointer-events: none; z-index: 2; color: var(--accent); animation: heartJump 1.4s ease-in-out infinite; }
+.belief-heart-icon.heart-tap { animation: heartTap 0.5s ease-out; }
+@keyframes heartJump { 0%, 100% { transform: scale(0.95); } 50% { transform: scale(1.15); } }
+@keyframes heartTap { 0% { transform: scale(0.95); } 35% { transform: scale(1.25); } 70% { transform: scale(1.05); } 100% { transform: scale(0.95); } }
 .btn { display: inline-block; padding: 0.85rem 1.6rem; font-family: var(--serif); font-size: 1rem; font-weight: 600; border: none; border-radius: var(--radius); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
 .btn:active { transform: scale(0.98); }
 .btn-primary { background: var(--accent); color: #fff; margin-top: 1.25rem; width: 100%; max-width: 280px; }
@@ -80,7 +83,8 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 #step-done .done-quote-text + .done-quote-text { margin-top: 0.35em; }
 #step-done .done-quote-en { font-style: italic; color: var(--text-soft); }
 #step-done .done-quote-author { margin: 0.4em 0 0; font-size: 0.95em; color: var(--text-soft); opacity: 0.9; line-height: 1.45; }
-#step-done .done-actions { margin-top: 2rem; }
+#step-done .done-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; }
+#step-done .done-actions .btn-done { min-width: 8.5rem; padding: 0.85rem 1.6rem; margin-top: 0; }
 .guide-title { font-weight: 600; color: var(--text); margin: 0 0 1rem; font-size: 1.02rem; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
 .guide-list { margin: 0 0 1rem; padding-left: 1.25rem; color: var(--text-soft); }
 .guide-list li { margin-bottom: 0.6rem; }
@@ -88,34 +92,68 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 .step-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 .step-actions .btn-secondary { order: 1; }
 .step-actions .btn-primary { order: 2; width: auto; max-width: none; }
-.line-page { min-height: calc(100vh - 5rem); display: flex; flex-direction: column; justify-content: flex-start; padding: 1.5rem 0; }
-.line-page .line-page-content { flex: 1; min-height: 0; overflow-y: auto; }
-.line-page .belief-display-wrap { min-height: 10.5rem; max-height: 12.25rem; overflow-y: auto; margin-bottom: 1.5rem; background: rgba(201,122,158,0.12); border-radius: 10px; border-left: 3px solid var(--accent); display: flex; align-items: center; }
-.line-page .belief-display-wrap .belief-display { margin: 0; background: none; border: none; border-radius: 0; }
+.line-page { height: calc(100vh - 6rem); max-height: calc(100vh - 6rem); min-height: 0; display: flex; flex-direction: column; justify-content: flex-start; padding: 1.25rem 1.25rem 0; box-sizing: border-box; overflow: hidden; }
+.line-page .line-page-content { flex: 1; min-height: 0; overflow: hidden; padding: 0 0.25rem; display: flex; flex-direction: column; }
+.line-page .step-header { margin-bottom: 0.75rem; flex-shrink: 0; }
+.line-page .belief-display-wrap { height: calc(5 * 1.5em + 1rem); min-height: calc(5 * 1.5em + 1rem); overflow-y: auto; margin-bottom: 0.75rem; background: rgba(201,122,158,0.12); border-radius: 10px; border-left: 3px solid var(--accent); display: flex; align-items: flex-start; flex-shrink: 0; -webkit-overflow-scrolling: touch; }
+.line-page .belief-display-wrap.belief-wrap-centered { align-items: center; }
+#step-guide.guide-hide-belief-box .belief-display-wrap { display: none; }
+.line-page .belief-display-wrap .belief-display { margin: 0; background: none; border: none; border-radius: 0; padding: 0.5rem 0.75rem; font-size: 0.95rem; line-height: 1.5; width: 100%; box-sizing: border-box; }
 .line-page .belief-display { margin-top: 0; margin-bottom: 0; }
-.line-page .guide-line-center { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem 0; }
-.line-page .guide-line-center .breathing-text { margin: 0; }
-.line-page .guide-line-center .breathing-sub { margin: 0.35em 0 0; }
-.line-actions { margin-top: auto; flex-shrink: 0; padding-bottom: 5.5rem; }
+.line-page .guide-line-center { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.5rem 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; position: relative; }
+#step-guide.guide-show-hearts .guide-line-center { overflow: hidden; }
+.guide-hearts { position: absolute; inset: 0; pointer-events: none; z-index: 0; display: none; align-items: center; justify-content: center; }
+#step-guide.guide-show-hearts .guide-hearts { display: flex; }
+#step-guide.guide-show-hearts .guide-line-center .breathing-text { animation: breathe 7s ease-in-out infinite; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot { animation: breatheHearts 7s ease-in-out infinite; animation-delay: 0s; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(1) { width: 48px; height: 48px; margin-left: -24px; margin-top: -24px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(2) { width: 64px; height: 64px; margin-left: -32px; margin-top: -32px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(3) { width: 40px; height: 40px; margin-left: -20px; margin-top: -20px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(4) { width: 56px; height: 56px; margin-left: -28px; margin-top: -28px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(5) { width: 72px; height: 72px; margin-left: -36px; margin-top: -36px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(6) { width: 44px; height: 44px; margin-left: -22px; margin-top: -22px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(7) { width: 60px; height: 60px; margin-left: -30px; margin-top: -30px; }
+.guide-hearts .heart-dot { position: absolute; width: 64px; height: 64px; margin-left: -32px; margin-top: -32px; animation: guideHeartBreathe 4s ease-in-out infinite; opacity: 0.5; }
+.guide-hearts .heart-dot svg { width: 100%; height: 100%; display: block; }
+@keyframes guideHeartBreathe { 0%, 100% { opacity: 0.4; transform: scale(0.85); } 50% { opacity: 0.75; transform: scale(1.15); } }
+.line-page .guide-line-center .breathing-text { margin: 0; font-size: 1.1rem; line-height: 1.6; max-width: 32em; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+.line-page .guide-line-center .breathing-sub { margin: 0.25em 0 0; font-size: 0.85rem; position: relative; z-index: 1; }
+.line-actions { margin-top: 0.75rem; flex-shrink: 0; padding-bottom: 4.5rem; padding-top: 0.25rem; }
 .breathing-text { font-size: 1.25rem; line-height: 1.75; color: var(--text); text-align: center; max-width: 100%; animation: breathe 6s ease-in-out infinite; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; padding: 0 0.25rem; }
 .line-page .breathing-text { max-width: 32em; margin-left: auto; margin-right: auto; }
+.line-choices { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 0.75rem; }
 .breathing-sub { font-size: 0.9rem; color: var(--text-soft); text-align: center; margin-top: 0.5rem; animation: breathe 6s ease-in-out infinite; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; }
 @keyframes breathe { 0%, 100% { opacity: 0.82; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.1); } }
+@keyframes breatheHearts { 0%, 100% { opacity: 0.6; transform: scale(0.92); filter: brightness(0.75); } 50% { opacity: 0.95; transform: scale(1.1); filter: brightness(1.35); } }
 @keyframes heartBreathe { 0%, 100% { opacity: 0.82; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.43); } }
 .btn-breathe { animation: breathe 4s ease-in-out infinite; }
 #step-welcome .btn-heart.btn-breathe { animation: heartBreathe 4s ease-in-out infinite; }
-.line-choices { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
-.line-actions { margin-top: auto; flex-shrink: 0; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.line-actions { margin-top: 1.5rem; flex-shrink: 0; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .line-actions .btn { min-width: 8.5rem; margin-top: 0; }
 .btn-choice { padding: 0.6rem 1.2rem; font-size: 0.95rem; background: rgba(201,122,158,0.15); color: var(--accent); border: 1px solid rgba(201,122,158,0.45); }
 .btn-choice:hover { background: rgba(201,122,158,0.28); border-color: var(--accent); }
 .hidden { display: none !important; }
-.dissolve-step { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 2rem 2rem 4rem; background: transparent; }
+.dissolve-step { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 2rem 2rem 4rem; background: transparent; pointer-events: none; }
 .dissolve-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4em; text-align: center; animation: dissolveBreatheThenShrink 5s ease-out forwards; transform-origin: center center; }
 @keyframes dissolveBreatheThenShrink { 0% { opacity: 0.9; transform: scale(0.97); } 20% { opacity: 1; transform: scale(1.03); } 40% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
 .dissolve-line { margin: 0; font-size: clamp(1.4rem, 5vw, 2.6rem); line-height: 1.4; color: var(--text); font-weight: 500; word-wrap: break-word; overflow-wrap: break-word; }
+.hearts-fall-wrap { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+.hearts-fall-wrap.hearts-fade-out { animation: heartsFadeOut 2s ease-out forwards; }
+@keyframes heartsFadeOut { to { opacity: 0; } }
+.heart-fall { position: absolute; top: -50px; width: 28px; height: 28px; color: var(--accent); animation: heartFall linear forwards; animation-duration: var(--fall-duration, 5s); }
+.heart-fall svg { width: 100%; height: 100%; display: block; }
+@keyframes heartFall { 0% { transform: translate(0, 0); opacity: 0.75; } 100% { transform: translate(var(--drift-x, 0), calc(100vh + 80px)); opacity: 0.4; } }
+#step-done.step-done-enter { opacity: 0; animation: doneFadeIn 2s ease-out forwards; }
+@keyframes doneFadeIn { from { opacity: 0; } to { opacity: 1; } }
 .footer { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); max-width: 12rem; z-index: 101; text-align: center; padding: 1.5rem 1rem; font-size: 0.8rem; color: var(--text-soft); background: transparent; }
-@media (max-width: 480px) { html { font-size: 14px; } body { padding: 1.25rem 0.75rem 3rem; padding-bottom: 4.5rem; } .guide-card { padding: 1.2rem 1rem; } .question-choices { flex-direction: column; } .btn-choice { width: 100%; } }
+@media (max-width: 480px) { html { font-size: 14px; } body { padding: 1.25rem 0.75rem 3rem; padding-bottom: 4.5rem; } .container { padding: 0 0.5rem; } .line-page { height: calc(100vh - 5.5rem); max-height: calc(100vh - 5.5rem); padding: 1rem 0.75rem 0; } .line-page .step-header { margin-bottom: 0.5rem; } .line-page .belief-display-wrap { height: calc(5 * 1.5em + 1rem); min-height: calc(5 * 1.5em + 1rem); margin-bottom: 0.5rem; } .line-page .belief-display-wrap .belief-display { padding: 0.4rem 0.6rem; font-size: 0.9rem; } .line-page .guide-line-center .breathing-text { font-size: 1rem; line-height: 1.55; } .line-page .guide-line-center .breathing-sub { font-size: 0.8rem; } #step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(1) { width: 36px; height: 36px; margin-left: -18px; margin-top: -18px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(2) { width: 48px; height: 48px; margin-left: -24px; margin-top: -24px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(3) { width: 32px; height: 32px; margin-left: -16px; margin-top: -16px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(4) { width: 42px; height: 42px; margin-left: -21px; margin-top: -21px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(5) { width: 54px; height: 54px; margin-left: -27px; margin-top: -27px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(6) { width: 34px; height: 34px; margin-left: -17px; margin-top: -17px; }
+#step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(7) { width: 46px; height: 46px; margin-left: -23px; margin-top: -23px; }
+.line-actions { margin-top: 0.5rem; padding-bottom: 5rem; } .line-choices { margin-top: 0.5rem; } .guide-card { padding: 1.2rem 1rem; } .question-choices { flex-direction: column; } .btn-choice { width: 100%; } #step-belief .belief-input-area { padding-bottom: 2rem; } #step-belief .belief-input-note { right: 2.35rem; bottom: 0.5rem; } #step-belief .belief-form .btn-primary { margin-top: 1.5rem; } }
   </style>
 </head>
 <body>
@@ -131,13 +169,15 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
       <div class="welcome-actions"><button type="button" class="btn btn-heart btn-breathe" id="btn-welcome-start" aria-label="开始"><svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button><span class="welcome-hint">start here</span></div>
     </section>
     <section id="step-belief" class="step">
-      <form id="form-belief" class="belief-form">
-        <label for="belief-input"><span class="label-italic">此刻</span><br><span class="label-italic">你在想什么</span></label>
-        <div class="belief-input-wrap">
-          <textarea id="belief-input" placeholder="当你写下，便已开始自由。" rows="3" required></textarea>
-          <span class="quill-icon" id="quill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#5c4a32" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-2 4-6 8-8 12l6-2 6 2-4-14z"/><path d="M12 2v20"/></svg></span>
+      <form id="form-belief" class="belief-form" onsubmit="return false;">
+        <label for="belief-input">此刻，<br>你在想什么？</label>
+        <div class="belief-input-area">
+          <div class="belief-input-wrap">
+            <textarea id="belief-input" placeholder="当你写下，便已开始自由。" rows="4" required></textarea>
+            <span class="belief-heart-icon" id="belief-heart-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+            <span class="belief-input-note">输入的内容不会以任何形式被保存。</span>
+          </div>
         </div>
-        <span class="belief-input-note">输入的内容不会以任何形式被保存。</span>
         <button type="submit" class="btn btn-primary btn-breathe">开始释放</button>
       </form>
     </section>
@@ -147,6 +187,15 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
           <div class="step-header" id="guide-step-header"><span class="step-badge" id="guide-badge">第一步</span><h2 id="guide-title">觉察</h2></div>
           <div class="belief-display-wrap"><p class="belief-display" id="guide-belief"></p></div>
           <div class="guide-line-center">
+            <div class="guide-hearts" aria-hidden="true">
+              <span class="heart-dot" style="left: 22%; top: 28%; color: rgba(201,122,158,0.7);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+              <span class="heart-dot" style="left: 78%; top: 32%; color: rgba(255,175,205,0.65);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+              <span class="heart-dot" style="left: 35%; top: 62%; color: rgba(185,140,210,0.6);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+              <span class="heart-dot" style="left: 65%; top: 58%; color: rgba(255,165,110,0.55);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+              <span class="heart-dot" style="left: 50%; top: 45%; color: rgba(130,160,220,0.6);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+              <span class="heart-dot" style="left: 28%; top: 52%; color: rgba(160,220,200,0.5);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+              <span class="heart-dot" style="left: 72%; top: 38%; color: rgba(230,190,255,0.55);"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+            </div>
             <p id="guide-line" class="breathing-text"></p>
             <p id="guide-sub" class="breathing-sub hidden"></p>
           </div>
@@ -155,7 +204,7 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
         <div class="line-actions step-actions">
           <button type="button" class="btn btn-secondary" id="guide-prev">上一步</button>
           <button type="button" class="btn btn-primary" id="guide-next">下一步</button>
-          <button type="button" class="btn btn-primary hidden" id="guide-finish">完成这一轮</button>
+          <button type="button" class="btn btn-primary hidden" id="guide-finish">完成释放</button>
         </div>
       </div>
     </section>
@@ -171,10 +220,13 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
         <p class="done-quote-text done-quote-zh">不管那是什么，不管那是什么。</p>
         <p class="done-quote-text done-quote-en">no matter what it was, no matter what it was.</p>
       </div>
-      <div class="step-actions done-actions"><button type="button" class="btn btn-primary" id="btn-start-over">再释放一个信念</button></div>
+      <div class="step-actions done-actions">
+        <button type="button" class="btn btn-secondary btn-done" id="btn-go-home">回到首页</button>
+        <button type="button" class="btn btn-primary btn-done" id="btn-continue-release">继续释放</button>
+      </div>
     </section>
   </main>
-  <footer class="footer"><p>觉察释放</p></footer>
+  <footer class="footer"><p>The-Sedona-Method · 张张</p></footer>
   <script>
 (function () {
   var steps = ['step-welcome', 'step-belief', 'step-guide', 'step-dissolve', 'step-done'];
@@ -183,22 +235,23 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
   var form = document.getElementById('form-belief');
   var beliefInput = document.getElementById('belief-input');
   var dissolveContainer = document.getElementById('dissolve-container');
-  var btnStartOver = document.getElementById('btn-start-over');
+  var btnGoHome = document.getElementById('btn-go-home');
+  var btnContinueRelease = document.getElementById('btn-continue-release');
   var dissolveTimeout = null;
   var guideSectionOrder = ['awareness', 'allow', 'release'];
   var guideSectionTitles = { awareness: ['第一步', '觉察'], allow: ['第二步', '允许'], release: ['第三步', '释放'] };
   var guideLines = {
-    awareness: ['随着文字的放大与缩小，做几次深呼吸。', '让这个信念在内心浮现，\n只是注意它，不评判。', '感受一下：这个信念在你身体的哪个部位有感觉？\n（胸口、胃、喉咙、额头……）', '把手轻轻放在那个位置，\n只是感受那里的感觉，呼吸几次。', '准备好后，\n点击「下一步」继续。'],
-    allow: ['在这一步，\n我们只是允许感受存在。', '无论那是紧张、恐惧、悲伤还是愤怒——\n允许它就在那里。', '不需要推开，也不需要抓住。\n允许它存在。', '在心里对自己说：「我允许这份感受存在。」\n多重复几遍，直到内心松动一点。', '当你感到可以了，\n点击「下一步」进入释放。'],
+    awareness: ['随着文字的放大与缩小，\n做几次深呼吸。', '让这个想法在内心浮现，\n只是注意它，不评判。', '感受一下这个想法:\n身体的哪个部位有感觉？\n（胸口、胃、喉咙、额头......）', '把手轻轻放在那个位置，\n只是感受那里的感觉，呼吸几次。', '准备好后，\n点击「下一步」继续。'],
+    allow: ['在这一步，\n我们只是允许感受存在。', '无论是紧张、恐惧、悲伤还是愤怒，\n允许它就在那里。', '不需要推开，也不需要抓住。\n允许它存在。', '在心里对自己说：\n「我允许这份感受存在。」\n多重复几遍，\n直到内心松动一点。', '当你感到可以了，\n点击「下一步」进入释放。'],
     release: [
-      { text: '莱斯特释放法的核心三问。\n请在心里真诚回答，回答「是」或「否」都可以。' },
+      { text: '莱斯特释放法的核心三问。\n请在心里诚实回答，\n回答「是」或「否」都可以。' },
       { text: '你能放下它吗？', sub: 'Could you let it go?', choices: [{ label: '暂时还不能', value: 'no' }, { label: '能', value: 'yes' }], releaseQuestionIndex: 1 },
       { text: '无论能不能，\n你都在释放。', nextOnly: true, afterNextBackTo: 1 },
       { text: '你愿意放下它吗？', sub: 'Would you let it go?', choices: [{ label: '暂时还不愿意', value: 'no' }, { label: '愿意', value: 'yes' }], releaseQuestionIndex: 3 },
       { text: '无论愿不愿意，\n你都在释放。', nextOnly: true, afterNextBackTo: 3 },
       { text: '什么时候？', sub: 'When?', choices: [{ label: '再等一下', value: 'later' }, { label: '现在', value: 'now' }], releaseQuestionIndex: 5 },
       { text: '无论什么时候，\n你都在释放。', nextOnly: true, afterNextBackTo: 5 },
-      { text: '很好。感受一下身体与内心，是否比刚才轻松一点？\n可以多轮重复这三问，直到感觉更轻。', showFinish: true }
+      { text: '很好。\n感受一下身体与内心，\n是否比刚才轻松一点？\n可以多轮重复这三问，直到感觉更轻。', showFinish: true }
     ]
   };
   var guideSectionIndex = 0, guideLineIndex = 0;
@@ -210,7 +263,18 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
     var section = getCurrentSection(), titles = guideSectionTitles[section];
     if (guideBadge) guideBadge.textContent = titles[0];
     if (guideTitle) guideTitle.textContent = titles[1];
+    var stepGuide = document.getElementById('step-guide');
+    var isFirstAwarenessScreen = section === 'awareness' && guideLineIndex === 0;
+    if (stepGuide) { stepGuide.classList.toggle('guide-hide-belief-box', isFirstAwarenessScreen); stepGuide.classList.toggle('guide-show-hearts', isFirstAwarenessScreen); }
     if (guideBelief) { guideBelief.textContent = currentBelief ? '「' + currentBelief + '」' : ''; guideBelief.style.display = currentBelief ? '' : 'none'; }
+    (function syncBeliefWrap() {
+      var wrap = guideBelief && guideBelief.parentElement;
+      if (!wrap || !wrap.classList.contains('belief-display-wrap')) return;
+      setTimeout(function () {
+        if (guideBelief.scrollHeight <= wrap.clientHeight) { wrap.classList.add('belief-wrap-centered'); wrap.scrollTop = 0; }
+        else { wrap.classList.remove('belief-wrap-centered'); wrap.scrollTop = 0; }
+      }, 0);
+    })();
     var item = getCurrentItem();
     if (!item) return;
     if (typeof item === 'string') {
@@ -252,6 +316,11 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
     renderGuideLine();
   }
   function retreatGuide() {
+    if (getCurrentSection() === 'release') {
+      if (guideLineIndex === 3) { guideLineIndex = 1; renderGuideLine(); return; }
+      if (guideLineIndex === 5) { guideLineIndex = 3; renderGuideLine(); return; }
+      if (guideLineIndex === 7) { guideLineIndex = 5; renderGuideLine(); return; }
+    }
     if (guideLineIndex > 0) { guideLineIndex--; renderGuideLine(); }
     else if (guideSectionIndex > 0) { guideSectionIndex--; var lines = guideLines[guideSectionOrder[guideSectionIndex]]; guideLineIndex = lines.length - 1; renderGuideLine(); }
     else showStep(1);
@@ -262,33 +331,80 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
     for (var i = 0; i < steps.length; i++) { var el = document.getElementById(steps[i]); if (el) el.classList.toggle('active', i === index); }
     currentStepIndex = index;
     if (index === 0) { beliefInput.value = ''; currentBelief = ''; guideSectionIndex = 0; guideLineIndex = 0; }
+    if (index === 1 && beliefInput) setTimeout(syncBeliefInputPadding, 0);
     if (index === 2) { guideSectionIndex = 0; guideLineIndex = 0; renderGuideLine(); }
     if (index === 3 && dissolveContainer && currentBelief) {
-      var parts = [];
-      currentBelief.split(/\n/).forEach(function (line) { line.split(/[。；，、！？]+/).forEach(function (seg) { var t = seg.trim(); if (t) parts.push(t); }); });
-      if (parts.length === 0) parts = [currentBelief];
       dissolveContainer.innerHTML = '';
       var inner = document.createElement('div'); inner.className = 'dissolve-inner';
-      parts.forEach(function (phrase) { var p = document.createElement('p'); p.className = 'dissolve-line'; p.textContent = '「' + phrase + '」'; inner.appendChild(p); });
+      var p = document.createElement('p'); p.className = 'dissolve-line'; p.style.whiteSpace = 'pre-wrap'; p.textContent = '「' + currentBelief + '」'; inner.appendChild(p);
       dissolveContainer.appendChild(inner);
-      dissolveTimeout = setTimeout(function () { showStep(4); }, 5200);
+      dissolveTimeout = setTimeout(function () {
+        dissolveTimeout = null;
+        var wrap = document.createElement('div');
+        wrap.className = 'hearts-fall-wrap';
+        var heartSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+        var colors = ['rgb(91,143,212)', 'rgb(155,107,158)', 'rgb(201,122,158)', 'rgb(232,149,90)', 'rgb(212,168,74)', 'rgb(90,158,107)'];
+        var n = 107;
+        for (var i = 0; i < n; i++) {
+          var el = document.createElement('div');
+          el.className = 'heart-fall';
+          el.style.left = Math.random() * 100 + '%';
+          el.style.animationDelay = (Math.random() * 2.8) + 's';
+          el.style.setProperty('--drift-x', (Math.random() * 70 - 35) + 'px');
+          el.style.setProperty('--fall-duration', (4.5 + Math.random() * 1.2) + 's');
+          el.style.opacity = (0.7 + Math.random() * 0.3).toFixed(2);
+          var size = 12 + Math.floor(Math.random() * 38);
+          el.style.width = size + 'px';
+          el.style.height = size + 'px';
+          el.style.color = colors[i % colors.length];
+          el.innerHTML = heartSvg;
+          wrap.appendChild(el);
+        }
+        dissolveContainer.appendChild(wrap);
+        setTimeout(function () {
+          var stepDone = document.getElementById('step-done');
+          var stepDissolve = document.getElementById('step-dissolve');
+          if (stepDone) stepDone.classList.add('active', 'step-done-enter');
+          if (stepDissolve) stepDissolve.classList.add('active');
+          wrap.classList.add('hearts-fade-out');
+          setTimeout(function () {
+            wrap.remove();
+            for (var i = 0; i < steps.length; i++) {
+              var el = document.getElementById(steps[i]);
+              if (el) el.classList.toggle('active', i === 4);
+            }
+            currentStepIndex = 4;
+          }, 2000);
+        }, 5000);
+      }, 5200);
     }
   }
   form.addEventListener('submit', function (e) { e.preventDefault(); var value = beliefInput.value.trim(); if (!value) return; currentBelief = value; showStep(2); });
   var btnWelcomeStart = document.getElementById('btn-welcome-start');
   if (btnWelcomeStart) btnWelcomeStart.addEventListener('click', function () { showStep(1); });
-  var quillIcon = document.getElementById('quill-icon');
-  if (beliefInput && quillIcon) { beliefInput.addEventListener('input', function () { quillIcon.classList.remove('quill-write'); quillIcon.offsetWidth; quillIcon.classList.add('quill-write'); setTimeout(function () { quillIcon.classList.remove('quill-write'); }, 460); }); }
+  function syncBeliefInputPadding() {
+    if (!beliefInput) return;
+    beliefInput.style.paddingTop = '';
+    beliefInput.style.paddingBottom = '';
+    if (beliefInput.scrollHeight > beliefInput.clientHeight) beliefInput.scrollTop = 0;
+  }
+  if (beliefInput) {
+    beliefInput.addEventListener('input', syncBeliefInputPadding);
+    window.addEventListener('resize', syncBeliefInputPadding);
+  }
+  var beliefHeartIcon = document.getElementById('belief-heart-icon');
+  if (beliefInput && beliefHeartIcon) { beliefInput.addEventListener('input', function () { beliefHeartIcon.classList.remove('heart-tap'); beliefHeartIcon.offsetWidth; beliefHeartIcon.classList.add('heart-tap'); setTimeout(function () { beliefHeartIcon.classList.remove('heart-tap'); }, 520); }); }
   if (guideNext) guideNext.addEventListener('click', advanceGuide);
   if (guidePrev) guidePrev.addEventListener('click', retreatGuide);
   if (guideFinish) guideFinish.addEventListener('click', function () { showStep(3); });
-  if (btnStartOver) btnStartOver.addEventListener('click', function () { showStep(0); });
+  if (btnGoHome) btnGoHome.addEventListener('click', function () { showStep(0); });
+  if (btnContinueRelease) btnContinueRelease.addEventListener('click', function () { if (beliefInput) beliefInput.value = ''; showStep(1); });
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.keyCode !== 13) return;
     if (currentStepIndex === 0 && btnWelcomeStart) { e.preventDefault(); btnWelcomeStart.click(); return; }
-    if (currentStepIndex === 1) { e.preventDefault(); form.requestSubmit(); return; }
+    if (currentStepIndex === 1) return;
     if (currentStepIndex === 2) { if (guideNext && !guideNext.classList.contains('hidden')) { e.preventDefault(); guideNext.click(); } else if (guideFinish && !guideFinish.classList.contains('hidden')) { e.preventDefault(); guideFinish.click(); } return; }
-    if (currentStepIndex === 4 && btnStartOver) { e.preventDefault(); btnStartOver.click(); }
+    if (currentStepIndex === 4 && btnContinueRelease) { e.preventDefault(); btnContinueRelease.click(); }
   });
   showStep(0);
 })();
