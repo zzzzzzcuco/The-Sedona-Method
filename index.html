@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>觉察释放</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
+  <style>
+:root {
+  --bg: #d6c9b8;
+  --bg-card: rgba(248, 242, 232, 0.92);
+  --text: #2c2925;
+  --text-soft: #5c564e;
+  --accent: #c97a9e;
+  --accent-light: #d498b0;
+  --serif: "Noto Serif SC", "ZCOOL XiaoWei", Georgia, serif;
+  --radius: 16px;
+  --shadow: 0 8px 32px rgba(44, 41, 37, 0.08);
+  --transition: 0.35s ease;
+}
+*,*::before,*::after { box-sizing: border-box; }
+html { font-size: 18px; -webkit-font-smoothing: antialiased; }
+body { margin: 0; min-height: 100vh; font-family: var(--serif); color: var(--text); background: var(--bg); line-height: 1.65; padding: 2rem 1rem 4rem; padding-bottom: 4.5rem; }
+.bg-pattern { position: fixed; inset: 0; background: radial-gradient(ellipse 75% 55% at 10% 20%, rgba(255,165,110,0.55), transparent 52%), radial-gradient(ellipse 70% 50% at 90% 25%, rgba(255,175,205,0.52), transparent 50%), radial-gradient(ellipse 65% 55% at 50% 15%, rgba(255,205,120,0.48), transparent 50%), radial-gradient(ellipse 70% 50% at 25% 75%, rgba(185,140,210,0.5), transparent 52%), radial-gradient(ellipse 65% 50% at 80% 70%, rgba(130,160,220,0.5), transparent 50%), radial-gradient(ellipse 60% 45% at 15% 55%, rgba(160,220,200,0.42), transparent 50%), radial-gradient(ellipse 55% 50% at 85% 55%, rgba(255,200,180,0.4), transparent 50%), radial-gradient(ellipse 50% 40% at 50% 80%, rgba(230,190,255,0.38), transparent 48%); pointer-events: none; z-index: 0; }
+.bg-pattern::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E"); pointer-events: none; opacity: 0.85; }
+.container { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+.step { display: none; animation: fadeIn 0.4s ease; }
+.step.active { display: block; }
+#step-dissolve.step.active { animation: none; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.title { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 600; color: var(--text); margin: 0 0 0.5rem; letter-spacing: 0.02em; }
+.subtitle { color: var(--text-soft); margin: 0 0 2rem; font-size: 0.95rem; }
+#step-welcome.step.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; padding: 2rem 1rem; }
+#step-welcome .title { margin-bottom: 1.5rem; }
+#step-welcome .welcome-quote { margin: 0 0 2rem; width: 100%; max-width: 28em; padding: 0 1rem; }
+#step-welcome .welcome-actions { margin-top: 0.5rem; display: flex; flex-direction: column; align-items: center; gap: 0; }
+#step-welcome .welcome-quote-en { margin: 0; font-size: 1.4rem; line-height: 1.9; color: var(--text); font-style: normal; display: block; }
+#step-welcome .welcome-quote-zh { margin: 0.75em 0 0; font-size: 1.25rem; line-height: 1.85; color: var(--text-soft); display: block; }
+#step-welcome .welcome-quote p:nth-child(3) { margin-top: 1.4rem; }
+#step-welcome .welcome-actions .btn { font-size: 0.9rem; padding: 0.6rem 1.2rem; max-width: 140px; }
+#step-welcome .welcome-actions .btn-heart { width: 52px; height: 52px; padding: 0; border: none; background: transparent; cursor: pointer; border-radius: 0; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); margin: 0; max-width: none; }
+#step-welcome .welcome-actions .btn-heart .heart-icon { width: 40px; height: 40px; }
+#step-welcome .welcome-actions .welcome-hint { font-size: 0.85rem; color: var(--text-soft); font-style: italic; margin: 0.4rem 0 0; display: block; }
+#step-belief.step.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; }
+#step-belief .belief-form { display: flex; flex-direction: column; align-items: flex-start; text-align: left; width: 100%; max-width: 100%; }
+#step-belief .belief-form label { display: block; font-size: 1.35rem; color: var(--text-soft); margin-bottom: 1.25rem; line-height: 1.5; }
+#step-belief .belief-form label .label-italic { font-style: italic; }
+#step-belief .belief-form .btn-primary { width: auto; max-width: none; }
+#step-belief .belief-input-wrap { width: 100%; max-width: 100%; }
+.belief-form label { display: block; font-size: 0.9rem; color: var(--text-soft); margin-bottom: 0.5rem; }
+.belief-input-wrap { position: relative; }
+.belief-input-note { display: block; width: 100%; margin-top: 0.35rem; font-size: 0.7rem; color: var(--text-soft); opacity: 0.85; text-align: right; font-style: italic; }
+#belief-input { width: 100%; padding: 1rem 1.1rem 2.25rem 1.1rem; font-family: var(--serif); font-size: 0.9rem; font-style: normal; line-height: 1.6; color: #3d3529; background: linear-gradient(135deg, #ebe4d8 0%, #e5ddd0 50%, #e8e0d4 100%); border: 1px solid rgba(180,170,155,0.5); border-radius: 8px; resize: vertical; min-height: 100px; transition: box-shadow var(--transition); box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), 0 2px 12px rgba(0,0,0,0.04); }
+#belief-input::placeholder { color: #7a6f62; opacity: 0.8; }
+#belief-input:focus { outline: none; border-color: rgba(201,122,158,0.5); box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), 0 0 0 2px rgba(201,122,158,0.2); }
+.belief-input-wrap::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 8px; background: radial-gradient(ellipse 80% 50% at 20% 30%, rgba(255,250,245,0.5), transparent 50%), radial-gradient(ellipse 60% 40% at 80% 70%, rgba(245,242,235,0.4), transparent 45%); opacity: 0.85; }
+.quill-icon { position: absolute; right: 0.9rem; bottom: 0.6rem; width: 28px; height: 28px; pointer-events: none; transform-origin: 90% 85%; transition: transform 0.15s ease; z-index: 2; }
+.quill-icon.quill-write { animation: quillDip 0.45s ease-out; }
+@keyframes quillDip { 0% { transform: rotate(0deg) translateY(0); } 35% { transform: rotate(-8deg) translateY(3px); } 70% { transform: rotate(2deg) translateY(1px); } 100% { transform: rotate(0deg) translateY(0); } }
+.btn { display: inline-block; padding: 0.85rem 1.6rem; font-family: var(--serif); font-size: 1rem; font-weight: 600; border: none; border-radius: var(--radius); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--accent); color: #fff; margin-top: 1.25rem; width: 100%; max-width: 280px; }
+.btn-primary:hover { background: var(--accent-light); box-shadow: var(--shadow); }
+.btn-secondary { background: transparent; color: var(--text-soft); border: 1px solid rgba(92,86,78,0.35); }
+.btn-secondary:hover { color: var(--text); border-color: var(--text-soft); }
+.step-header { margin-bottom: 1.25rem; }
+.step-badge { display: inline-block; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.35rem; }
+.step-header h2 { font-size: 1.5rem; font-weight: 600; margin: 0; color: var(--text); }
+.belief-display { font-size: 1.05rem; color: var(--text-soft); margin: 0 0 1.5rem; padding: 0.75rem 1rem; background: rgba(201,122,158,0.12); border-radius: 10px; border-left: 3px solid var(--accent); word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; }
+.guide-card { background: var(--bg-card); padding: 1.5rem 1.4rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+.guide-card p { word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
+.guide-card blockquote { margin: 1.25rem 0 0; padding: 1rem 1.2rem; background: rgba(201,122,158,0.1); border-left: 3px solid var(--accent); color: var(--text-soft); font-size: 0.95rem; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; }
+#step-done.step.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; padding: 2rem 1rem; text-align: center; }
+#step-done .done-center { max-width: 28em; }
+#step-done .done-quote-text { margin: 0; font-size: 1.1rem; line-height: 1.65; color: var(--text); }
+#step-done .done-quote-text + .done-quote-text { margin-top: 0.35em; }
+#step-done .done-quote-en { font-style: italic; color: var(--text-soft); }
+#step-done .done-quote-author { margin: 0.4em 0 0; font-size: 0.95em; color: var(--text-soft); opacity: 0.9; line-height: 1.45; }
+#step-done .done-actions { margin-top: 2rem; }
+.guide-title { font-weight: 600; color: var(--text); margin: 0 0 1rem; font-size: 1.02rem; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
+.guide-list { margin: 0 0 1rem; padding-left: 1.25rem; color: var(--text-soft); }
+.guide-list li { margin-bottom: 0.6rem; }
+.guide-hint { margin: 1rem 0 0; font-size: 0.9rem; color: var(--text-soft); font-style: italic; }
+.step-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.step-actions .btn-secondary { order: 1; }
+.step-actions .btn-primary { order: 2; }
+.line-page { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; padding: 1.5rem 0; }
+.line-page .belief-display { margin-bottom: 2rem; }
+.breathing-text { font-size: 1.25rem; line-height: 1.75; color: var(--text); text-align: center; max-width: 100%; animation: breathe 6s ease-in-out infinite; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; padding: 0 0.25rem; }
+.line-page .breathing-text { max-width: 32em; margin-left: auto; margin-right: auto; }
+.breathing-sub { font-size: 0.9rem; color: var(--text-soft); text-align: center; margin-top: 0.5rem; animation: breathe 6s ease-in-out infinite; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; }
+@keyframes breathe { 0%, 100% { opacity: 0.82; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.1); } }
+@keyframes heartBreathe { 0%, 100% { opacity: 0.82; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.43); } }
+.btn-breathe { animation: breathe 4s ease-in-out infinite; }
+#step-welcome .btn-heart.btn-breathe { animation: heartBreathe 4s ease-in-out infinite; }
+.line-choices { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.line-actions { margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.line-actions .btn { min-width: 8.5rem; margin-top: 0; }
+.btn-choice { padding: 0.6rem 1.2rem; font-size: 0.95rem; background: rgba(201,122,158,0.15); color: var(--accent); border: 1px solid rgba(201,122,158,0.45); }
+.btn-choice:hover { background: rgba(201,122,158,0.28); border-color: var(--accent); }
+.hidden { display: none !important; }
+.dissolve-step { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 2rem 2rem 4rem; background: transparent; }
+.dissolve-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4em; text-align: center; animation: dissolveBreatheThenShrink 5s ease-out forwards; transform-origin: center center; }
+@keyframes dissolveBreatheThenShrink { 0% { opacity: 0.9; transform: scale(0.97); } 20% { opacity: 1; transform: scale(1.03); } 40% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
+.dissolve-line { margin: 0; font-size: clamp(1.4rem, 5vw, 2.6rem); line-height: 1.4; color: var(--text); font-weight: 500; word-wrap: break-word; overflow-wrap: break-word; }
+.footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 101; text-align: center; padding: 1.5rem 1rem; font-size: 0.8rem; color: var(--text-soft); background: transparent; }
+@media (max-width: 480px) { body { padding: 1.25rem 0.75rem 3rem; padding-bottom: 4.5rem; } .guide-card { padding: 1.2rem 1rem; } .question-choices { flex-direction: column; } .btn-choice { width: 100%; } }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern" aria-hidden="true"></div>
+  <main class="container">
+    <section id="step-welcome" class="step active">
+      <div class="welcome-quote">
+        <p class="welcome-quote-en">The only freedom there is,</p>
+        <p class="welcome-quote-en">is freedom from our own mind.</p>
+        <p class="welcome-quote-zh">唯一真正的自由，</p>
+        <p class="welcome-quote-zh">是从自己的思想中解脱。</p>
+      </div>
+      <div class="welcome-actions"><button type="button" class="btn btn-heart btn-breathe" id="btn-welcome-start" aria-label="开始"><svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button><span class="welcome-hint">start here</span></div>
+    </section>
+    <section id="step-belief" class="step">
+      <form id="form-belief" class="belief-form">
+        <label for="belief-input"><span class="label-italic">此刻</span><br><span class="label-italic">你在想什么</span></label>
+        <div class="belief-input-wrap">
+          <textarea id="belief-input" placeholder="当你写下，便已开始自由。" rows="3" required></textarea>
+          <span class="quill-icon" id="quill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#5c4a32" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-2 4-6 8-8 12l6-2 6 2-4-14z"/><path d="M12 2v20"/></svg></span>
+        </div>
+        <span class="belief-input-note">输入的内容不会以任何形式被保存。</span>
+        <button type="submit" class="btn btn-primary btn-breathe">开始释放</button>
+      </form>
+    </section>
+    <section id="step-guide" class="step">
+      <div class="line-page">
+        <div class="step-header" id="guide-step-header"><span class="step-badge" id="guide-badge">第一步</span><h2 id="guide-title">觉察</h2></div>
+        <p class="belief-display" id="guide-belief"></p>
+        <p id="guide-line" class="breathing-text"></p>
+        <p id="guide-sub" class="breathing-sub hidden"></p>
+        <div id="guide-choices" class="line-choices hidden"></div>
+        <div class="line-actions step-actions">
+          <button type="button" class="btn btn-secondary" id="guide-prev">上一步</button>
+          <button type="button" class="btn btn-primary" id="guide-next">下一步</button>
+          <button type="button" class="btn btn-primary hidden" id="guide-finish">完成这一轮</button>
+        </div>
+      </div>
+    </section>
+    <section id="step-dissolve" class="step"><div class="dissolve-step" id="dissolve-container"></div></section>
+    <section id="step-done" class="step">
+      <div class="done-center">
+        <p class="done-quote-text done-quote-zh">每一次你在某事上完全地释放之后，</p>
+        <p class="done-quote-text done-quote-en">Every time you released completely on something,</p>
+        <p class="done-quote-text done-quote-zh">不论之前它看起来有多么不可能，</p>
+        <p class="done-quote-text done-quote-en">no matter how impossible it was before you released,</p>
+        <p class="done-quote-text done-quote-zh">它都会立即变成可能，</p>
+        <p class="done-quote-text done-quote-en">it became immediately possible when you released,</p>
+        <p class="done-quote-text done-quote-zh">不管那是什么，不管那是什么。</p>
+        <p class="done-quote-text done-quote-en">no matter what it was, no matter what it was.</p>
+      </div>
+      <div class="step-actions done-actions"><button type="button" class="btn btn-primary" id="btn-start-over">再释放一个信念</button></div>
+    </section>
+  </main>
+  <footer class="footer"><p>觉察释放</p></footer>
+  <script>
+(function () {
+  var steps = ['step-welcome', 'step-belief', 'step-guide', 'step-dissolve', 'step-done'];
+  var currentStepIndex = 0;
+  var currentBelief = '';
+  var form = document.getElementById('form-belief');
+  var beliefInput = document.getElementById('belief-input');
+  var dissolveContainer = document.getElementById('dissolve-container');
+  var btnStartOver = document.getElementById('btn-start-over');
+  var dissolveTimeout = null;
+  var guideSectionOrder = ['awareness', 'allow', 'release'];
+  var guideSectionTitles = { awareness: ['第一步', '觉察'], allow: ['第二步', '允许'], release: ['第三步', '释放'] };
+  var guideLines = {
+    awareness: ['随着下方文字的放大与缩小，做几次深呼吸。', '让这个信念在内心浮现，\n只是注意它，不评判。', '感受一下：这个信念在你身体的哪个部位有感觉？\n（胸口、胃、喉咙、额头……）', '把手轻轻放在那个位置，\n只是感受那里的感觉，呼吸几次。', '准备好后，\n点击「下一步」继续。'],
+    allow: ['在这一步，\n我们只是允许感受存在。', '无论那是紧张、恐惧、悲伤还是愤怒——\n允许它就在那里。', '不需要推开，也不需要抓住。\n允许它存在。', '在心里对自己说：「我允许这份感受存在。」\n多重复几遍，直到内心松动一点。', '当你感到可以了，\n点击「下一步」进入释放。'],
+    release: [
+      { text: '莱斯特释放法的核心三问。\n请在心里真诚回答，回答「是」或「否」都可以。' },
+      { text: '你能放下它吗？', sub: 'Could you let it go?', choices: [{ label: '暂时还不能', value: 'no' }, { label: '能', value: 'yes' }], releaseQuestionIndex: 1 },
+      { text: '无论能不能，\n你都在释放。', nextOnly: true, afterNextBackTo: 1 },
+      { text: '你愿意放下它吗？', sub: 'Would you let it go?', choices: [{ label: '暂时还不愿意', value: 'no' }, { label: '愿意', value: 'yes' }], releaseQuestionIndex: 3 },
+      { text: '无论愿不愿意，\n你都在释放。', nextOnly: true, afterNextBackTo: 3 },
+      { text: '什么时候？', sub: 'When?', choices: [{ label: '再等一下', value: 'later' }, { label: '现在', value: 'now' }], releaseQuestionIndex: 5 },
+      { text: '无论什么时候，\n你都在释放。', nextOnly: true, afterNextBackTo: 5 },
+      { text: '很好。感受一下身体与内心，是否比刚才轻松一点？\n可以多轮重复这三问，直到感觉更轻。', showFinish: true }
+    ]
+  };
+  var guideSectionIndex = 0, guideLineIndex = 0;
+  var guideBadge = document.getElementById('guide-badge'), guideTitle = document.getElementById('guide-title'), guideBelief = document.getElementById('guide-belief'), guideLine = document.getElementById('guide-line'), guideSub = document.getElementById('guide-sub'), guideChoices = document.getElementById('guide-choices'), guidePrev = document.getElementById('guide-prev'), guideNext = document.getElementById('guide-next'), guideFinish = document.getElementById('guide-finish');
+  function getCurrentSection() { return guideSectionOrder[guideSectionIndex]; }
+  function getCurrentLines() { return guideLines[getCurrentSection()]; }
+  function getCurrentItem() { var lines = getCurrentLines(); return lines && lines[guideLineIndex]; }
+  function renderGuideLine() {
+    var section = getCurrentSection(), titles = guideSectionTitles[section];
+    if (guideBadge) guideBadge.textContent = titles[0];
+    if (guideTitle) guideTitle.textContent = titles[1];
+    if (guideBelief) { guideBelief.textContent = currentBelief ? '「' + currentBelief + '」' : ''; guideBelief.style.display = currentBelief ? '' : 'none'; }
+    var item = getCurrentItem();
+    if (!item) return;
+    if (typeof item === 'string') {
+      guideLine.textContent = item;
+      guideSub.classList.add('hidden'); guideSub.textContent = '';
+      guideChoices.classList.add('hidden'); guideChoices.innerHTML = '';
+      guideNext.classList.remove('hidden'); guideFinish.classList.add('hidden');
+    } else {
+      guideLine.textContent = item.text;
+      if (item.sub) { guideSub.textContent = item.sub; guideSub.classList.remove('hidden'); } else guideSub.classList.add('hidden');
+      if (item.nextOnly) { guideChoices.classList.add('hidden'); guideChoices.innerHTML = ''; guideNext.classList.remove('hidden'); guideFinish.classList.add('hidden'); }
+      else if (item.choices && item.choices.length) {
+        guideChoices.innerHTML = '';
+        item.choices.forEach(function (c) {
+          var btn = document.createElement('button');
+          btn.type = 'button'; btn.className = 'btn btn-choice'; btn.textContent = c.label;
+          btn.addEventListener('click', function () { advanceGuideFromChoice(c.value, item.releaseQuestionIndex); });
+          guideChoices.appendChild(btn);
+        });
+        guideChoices.classList.remove('hidden'); guideNext.classList.add('hidden'); guideFinish.classList.add('hidden');
+      } else { guideChoices.classList.add('hidden'); guideChoices.innerHTML = ''; guideNext.classList.add('hidden'); if (item.showFinish) guideFinish.classList.remove('hidden'); else guideNext.classList.remove('hidden'); }
+    }
+    if (guidePrev) guidePrev.style.display = '';
+  }
+  function advanceGuide() {
+    var item = getCurrentItem();
+    if (item && item.nextOnly && item.afterNextBackTo !== undefined) { guideLineIndex = item.afterNextBackTo; renderGuideLine(); return; }
+    var lines = getCurrentLines();
+    if (guideLineIndex < lines.length - 1) { guideLineIndex++; renderGuideLine(); }
+    else if (guideSectionIndex < guideSectionOrder.length - 1) { guideSectionIndex++; guideLineIndex = 0; renderGuideLine(); }
+    else showStep(2);
+  }
+  function advanceGuideFromChoice(choiceValue, releaseQuestionIndex) {
+    if (getCurrentSection() !== 'release' || releaseQuestionIndex === undefined) { advanceGuide(); return; }
+    if (releaseQuestionIndex === 1) guideLineIndex = choiceValue === 'no' ? 2 : 3;
+    else if (releaseQuestionIndex === 3) guideLineIndex = choiceValue === 'no' ? 4 : 5;
+    else if (releaseQuestionIndex === 5) guideLineIndex = choiceValue === 'later' ? 6 : 7;
+    else { advanceGuide(); return; }
+    renderGuideLine();
+  }
+  function retreatGuide() {
+    if (guideLineIndex > 0) { guideLineIndex--; renderGuideLine(); }
+    else if (guideSectionIndex > 0) { guideSectionIndex--; var lines = guideLines[guideSectionOrder[guideSectionIndex]]; guideLineIndex = lines.length - 1; renderGuideLine(); }
+    else showStep(1);
+  }
+  function showStep(index) {
+    if (index < 0 || index >= steps.length) return;
+    if (dissolveTimeout) { clearTimeout(dissolveTimeout); dissolveTimeout = null; }
+    for (var i = 0; i < steps.length; i++) { var el = document.getElementById(steps[i]); if (el) el.classList.toggle('active', i === index); }
+    currentStepIndex = index;
+    if (index === 0) { beliefInput.value = ''; currentBelief = ''; guideSectionIndex = 0; guideLineIndex = 0; }
+    if (index === 2) { guideSectionIndex = 0; guideLineIndex = 0; renderGuideLine(); }
+    if (index === 3 && dissolveContainer && currentBelief) {
+      var parts = [];
+      currentBelief.split(/\n/).forEach(function (line) { line.split(/[。；，、！？]+/).forEach(function (seg) { var t = seg.trim(); if (t) parts.push(t); }); });
+      if (parts.length === 0) parts = [currentBelief];
+      dissolveContainer.innerHTML = '';
+      var inner = document.createElement('div'); inner.className = 'dissolve-inner';
+      parts.forEach(function (phrase) { var p = document.createElement('p'); p.className = 'dissolve-line'; p.textContent = '「' + phrase + '」'; inner.appendChild(p); });
+      dissolveContainer.appendChild(inner);
+      dissolveTimeout = setTimeout(function () { showStep(4); }, 5200);
+    }
+  }
+  form.addEventListener('submit', function (e) { e.preventDefault(); var value = beliefInput.value.trim(); if (!value) return; currentBelief = value; showStep(2); });
+  var btnWelcomeStart = document.getElementById('btn-welcome-start');
+  if (btnWelcomeStart) btnWelcomeStart.addEventListener('click', function () { showStep(1); });
+  var quillIcon = document.getElementById('quill-icon');
+  if (beliefInput && quillIcon) { beliefInput.addEventListener('input', function () { quillIcon.classList.remove('quill-write'); quillIcon.offsetWidth; quillIcon.classList.add('quill-write'); setTimeout(function () { quillIcon.classList.remove('quill-write'); }, 460); }); }
+  if (guideNext) guideNext.addEventListener('click', advanceGuide);
+  if (guidePrev) guidePrev.addEventListener('click', retreatGuide);
+  if (guideFinish) guideFinish.addEventListener('click', function () { showStep(3); });
+  if (btnStartOver) btnStartOver.addEventListener('click', function () { showStep(0); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.keyCode !== 13) return;
+    if (currentStepIndex === 0 && btnWelcomeStart) { e.preventDefault(); btnWelcomeStart.click(); return; }
+    if (currentStepIndex === 1) { e.preventDefault(); form.requestSubmit(); return; }
+    if (currentStepIndex === 2) { if (guideNext && !guideNext.classList.contains('hidden')) { e.preventDefault(); guideNext.click(); } else if (guideFinish && !guideFinish.classList.contains('hidden')) { e.preventDefault(); guideFinish.click(); } return; }
+    if (currentStepIndex === 4 && btnStartOver) { e.preventDefault(); btnStartOver.click(); }
+  });
+  showStep(0);
+})();
+  </script>
+</body>
+</html>
