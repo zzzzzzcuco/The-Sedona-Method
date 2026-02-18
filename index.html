@@ -85,7 +85,7 @@ body { margin: 0; min-height: 100vh; font-family: var(--serif); color: var(--tex
 .guide-hint { margin: 1rem 0 0; font-size: 0.9rem; color: var(--text-soft); font-style: italic; }
 .step-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 .step-actions .btn-secondary { order: 1; }
-.step-actions .btn-primary { order: 2; }
+.step-actions .btn-primary { order: 2; width: auto; max-width: none; }
 .line-page { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; padding: 1.5rem 0; }
 .line-page .belief-display { margin-bottom: 2rem; }
 .breathing-text { font-size: 1.25rem; line-height: 1.75; color: var(--text); text-align: center; max-width: 100%; animation: breathe 6s ease-in-out infinite; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; padding: 0 0.25rem; }
@@ -106,7 +106,7 @@ body { margin: 0; min-height: 100vh; font-family: var(--serif); color: var(--tex
 @keyframes dissolveBreatheThenShrink { 0% { opacity: 0.9; transform: scale(0.97); } 20% { opacity: 1; transform: scale(1.03); } 40% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
 .dissolve-line { margin: 0; font-size: clamp(1.4rem, 5vw, 2.6rem); line-height: 1.4; color: var(--text); font-weight: 500; word-wrap: break-word; overflow-wrap: break-word; }
 .footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 101; text-align: center; padding: 1.5rem 1rem; font-size: 0.8rem; color: var(--text-soft); background: transparent; }
-@media (max-width: 480px) { body { padding: 1.25rem 0.75rem 3rem; padding-bottom: 4.5rem; } .guide-card { padding: 1.2rem 1rem; } .question-choices { flex-direction: column; } .btn-choice { width: 100%; } }
+@media (max-width: 480px) { html { font-size: 14px; } body { padding: 1.25rem 0.75rem 3rem; padding-bottom: 4.5rem; } .guide-card { padding: 1.2rem 1rem; } .question-choices { flex-direction: column; } .btn-choice { width: 100%; } }
   </style>
 </head>
 <body>
