@@ -148,7 +148,7 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 .footer { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); max-width: 22rem; z-index: 101; text-align: center; padding: 1.5rem 1rem; font-size: 0.8rem; color: var(--text-soft); background: transparent; white-space: nowrap; }
 .footer p { white-space: nowrap; margin: 0; }
 @media (max-width: 480px) { html { font-size: 16px; height: 100%; } body { overflow: hidden; height: 100vh; padding: 1.25rem 0.75rem 3rem; padding-bottom: 4.5rem; box-sizing: border-box; } .container { padding: 0 0.5rem; height: 100%; max-height: 100vh; overflow: hidden; } #step-welcome.step.active { height: 100vh; min-height: 100vh; overflow: hidden; } #step-done.step.active { height: 100vh; min-height: 100vh; overflow: hidden; } .line-page { height: calc(100vh - 5.5rem); max-height: calc(100vh - 5.5rem); padding: 2rem 0.75rem 0; overflow: hidden; }
-.line-page .line-page-content { padding-top: 0.5rem; overflow: hidden; } .line-page .step-header { margin-bottom: 0.85rem; } .line-page .belief-display-wrap { height: calc(5 * 1.5em + 1rem); min-height: calc(5 * 1.5em + 1rem); margin-bottom: 0.6rem; overflow: hidden; } .line-page .belief-display-wrap .belief-display { padding: 0.5rem 0.65rem; font-size: 0.95rem; } .line-page .guide-line-center { overflow: hidden; } .line-page .guide-line-center .breathing-text { font-size: 1.08rem; line-height: 1.6; } .line-page .guide-line-center .breathing-sub { font-size: 0.88rem; } .line-choices { flex-direction: row; flex-wrap: wrap; justify-content: center; } .line-choices .btn-choice { width: auto; min-width: 5rem; } #step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(1) { width: 36px; height: 36px; margin-left: -18px; margin-top: -18px; }
+.line-page .line-page-content { padding-top: 0.5rem; overflow: hidden; } .line-page .step-header { margin-bottom: 0.85rem; flex-shrink: 0; } .line-page .belief-display-wrap { height: calc(5 * 1.5em + 1rem); min-height: calc(5 * 1.5em + 1rem); max-height: calc(5 * 1.5em + 1rem); margin-bottom: 0.6rem; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; } .line-page .belief-display-wrap .belief-display { padding: 0.5rem 0.65rem; font-size: 0.95rem; } .line-page .guide-line-center { overflow: hidden; } .line-page .guide-line-center .breathing-text { font-size: 1.08rem; line-height: 1.6; } .line-page .guide-line-center .breathing-sub { font-size: 0.88rem; } .line-choices { flex-direction: row; flex-wrap: wrap; justify-content: center; } .line-choices .btn-choice { width: auto; min-width: 5rem; } #step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(1) { width: 36px; height: 36px; margin-left: -18px; margin-top: -18px; }
 #step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(2) { width: 48px; height: 48px; margin-left: -24px; margin-top: -24px; }
 #step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(3) { width: 32px; height: 32px; margin-left: -16px; margin-top: -16px; }
 #step-guide.guide-show-hearts .guide-hearts .heart-dot:nth-child(4) { width: 42px; height: 42px; margin-left: -21px; margin-top: -21px; }
@@ -330,11 +330,17 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
   function showStep(index) {
     if (index < 0 || index >= steps.length) return;
     if (dissolveTimeout) { clearTimeout(dissolveTimeout); dissolveTimeout = null; }
+    if (document.activeElement && typeof document.activeElement.blur === 'function') document.activeElement.blur();
+    window.scrollTo(0, 0);
     for (var i = 0; i < steps.length; i++) { var el = document.getElementById(steps[i]); if (el) el.classList.toggle('active', i === index); }
     currentStepIndex = index;
     if (index === 0) { beliefInput.value = ''; currentBelief = ''; guideSectionIndex = 0; guideLineIndex = 0; }
     if (index === 1 && beliefInput) setTimeout(syncBeliefInputPadding, 0);
-    if (index === 2) { guideSectionIndex = 0; guideLineIndex = 0; renderGuideLine(); }
+    if (index === 2) {
+      guideSectionIndex = 0; guideLineIndex = 0; renderGuideLine();
+      var guideContent = document.querySelector('#step-guide .line-page-content');
+      if (guideContent) guideContent.scrollTop = 0;
+    }
     if (index === 3 && dissolveContainer && currentBelief) {
       dissolveContainer.innerHTML = '';
       var inner = document.createElement('div'); inner.className = 'dissolve-inner';
