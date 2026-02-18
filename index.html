@@ -68,8 +68,8 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 .btn-secondary { background: transparent; color: var(--text-soft); border: 1px solid rgba(92,86,78,0.35); }
 .btn-secondary:hover { color: var(--text); border-color: var(--text-soft); }
 .step-header { margin-bottom: 1.25rem; }
-.step-badge { display: inline-block; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.35rem; }
-.step-header h2 { font-size: 1.5rem; font-weight: 600; margin: 0; color: var(--text); }
+.step-badge { display: inline-block; font-size: 0.95rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.35rem; }
+.step-header h2 { font-size: 1.85rem; font-weight: 600; margin: 0; color: var(--text); }
 .belief-display { font-size: 1.05rem; color: var(--text-soft); margin: 0 0 1.5rem; padding: 0.75rem 1rem; background: rgba(201,122,158,0.12); border-radius: 10px; border-left: 3px solid var(--accent); word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; }
 .guide-card { background: var(--bg-card); padding: 1.5rem 1.4rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1.5rem; }
 .guide-card p { word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
@@ -90,10 +90,13 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 .step-actions .btn-primary { order: 2; width: auto; max-width: none; }
 .line-page { min-height: calc(100vh - 5rem); display: flex; flex-direction: column; justify-content: flex-start; padding: 1.5rem 0; }
 .line-page .line-page-content { flex: 1; min-height: 0; overflow-y: auto; }
-.line-page .belief-display-wrap { max-height: 5.25rem; overflow-y: auto; margin-bottom: 1.5rem; background: rgba(201,122,158,0.12); border-radius: 10px; border-left: 3px solid var(--accent); }
+.line-page .belief-display-wrap { min-height: 10.5rem; max-height: 12.25rem; overflow-y: auto; margin-bottom: 1.5rem; background: rgba(201,122,158,0.12); border-radius: 10px; border-left: 3px solid var(--accent); display: flex; align-items: center; }
 .line-page .belief-display-wrap .belief-display { margin: 0; background: none; border: none; border-radius: 0; }
 .line-page .belief-display { margin-top: 0; margin-bottom: 0; }
-.line-actions { margin-top: auto; flex-shrink: 0; padding-bottom: 4rem; }
+.line-page .guide-line-center { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem 0; }
+.line-page .guide-line-center .breathing-text { margin: 0; }
+.line-page .guide-line-center .breathing-sub { margin: 0.35em 0 0; }
+.line-actions { margin-top: auto; flex-shrink: 0; padding-bottom: 5.5rem; }
 .breathing-text { font-size: 1.25rem; line-height: 1.75; color: var(--text); text-align: center; max-width: 100%; animation: breathe 6s ease-in-out infinite; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; padding: 0 0.25rem; }
 .line-page .breathing-text { max-width: 32em; margin-left: auto; margin-right: auto; }
 .breathing-sub { font-size: 0.9rem; color: var(--text-soft); text-align: center; margin-top: 0.5rem; animation: breathe 6s ease-in-out infinite; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; white-space: pre-wrap; }
@@ -111,7 +114,7 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 .dissolve-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4em; text-align: center; animation: dissolveBreatheThenShrink 5s ease-out forwards; transform-origin: center center; }
 @keyframes dissolveBreatheThenShrink { 0% { opacity: 0.9; transform: scale(0.97); } 20% { opacity: 1; transform: scale(1.03); } 40% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
 .dissolve-line { margin: 0; font-size: clamp(1.4rem, 5vw, 2.6rem); line-height: 1.4; color: var(--text); font-weight: 500; word-wrap: break-word; overflow-wrap: break-word; }
-.footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 101; text-align: center; padding: 1.5rem 1rem; font-size: 0.8rem; color: var(--text-soft); background: transparent; }
+.footer { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); max-width: 12rem; z-index: 101; text-align: center; padding: 1.5rem 1rem; font-size: 0.8rem; color: var(--text-soft); background: transparent; }
 @media (max-width: 480px) { html { font-size: 14px; } body { padding: 1.25rem 0.75rem 3rem; padding-bottom: 4.5rem; } .guide-card { padding: 1.2rem 1rem; } .question-choices { flex-direction: column; } .btn-choice { width: 100%; } }
   </style>
 </head>
@@ -143,8 +146,10 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
         <div class="line-page-content">
           <div class="step-header" id="guide-step-header"><span class="step-badge" id="guide-badge">第一步</span><h2 id="guide-title">觉察</h2></div>
           <div class="belief-display-wrap"><p class="belief-display" id="guide-belief"></p></div>
-          <p id="guide-line" class="breathing-text"></p>
-          <p id="guide-sub" class="breathing-sub hidden"></p>
+          <div class="guide-line-center">
+            <p id="guide-line" class="breathing-text"></p>
+            <p id="guide-sub" class="breathing-sub hidden"></p>
+          </div>
           <div id="guide-choices" class="line-choices hidden"></div>
         </div>
         <div class="line-actions step-actions">
