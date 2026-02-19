@@ -139,12 +139,12 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
 @keyframes dissolveBreatheThenShrink { 0% { opacity: 0.9; transform: scale(0.97); } 20% { opacity: 1; transform: scale(1.03); } 40% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
 .dissolve-line { margin: 0; font-size: clamp(1.4rem, 5vw, 2.6rem); line-height: 1.4; color: var(--text); font-weight: 500; word-wrap: break-word; overflow-wrap: break-word; }
 .hearts-fall-wrap { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
-.hearts-fall-wrap.hearts-fade-out { animation: heartsFadeOut 2s ease-out forwards; }
+.hearts-fall-wrap.hearts-fade-out { animation: heartsFadeOut 1s ease-out forwards; }
 @keyframes heartsFadeOut { to { opacity: 0; } }
 .heart-fall { position: absolute; top: -50px; width: 28px; height: 28px; color: var(--accent); animation: heartFall linear forwards; animation-duration: var(--fall-duration, 5s); }
 .heart-fall svg { width: 100%; height: 100%; display: block; }
 @keyframes heartFall { 0% { transform: translate(0, 0); opacity: 0.75; } 100% { transform: translate(var(--drift-x, 0), calc(100vh + 80px)); opacity: 0.4; } }
-#step-done.step-done-enter { opacity: 0; animation: doneFadeIn 2s ease-out forwards; }
+#step-done.step-done-enter { opacity: 0; animation: doneFadeIn 1s ease-out forwards; }
 @keyframes doneFadeIn { from { opacity: 0; } to { opacity: 1; } }
 .footer { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); max-width: 22rem; z-index: 101; text-align: center; padding: 1.5rem 1rem; font-size: 0.8rem; color: var(--text-soft); background: transparent; white-space: nowrap; }
 @media (max-width: 480px) { .footer { font-size: 0.65rem; padding-bottom: max(1rem, env(safe-area-inset-bottom)); } }
@@ -233,6 +233,18 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
   <footer class="footer"><p>The-Sedona-Method · 张张</p></footer>
   <script>
 (function () {
+  (function preventMobileZoom() {
+    if (!('ontouchstart' in document)) return;
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function (e) {
+      var now = Date.now();
+      if (now - lastTouchEnd <= 300) e.preventDefault();
+      lastTouchEnd = now;
+    }, { passive: false });
+    document.addEventListener('touchstart', function (e) {
+      if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+  })();
   var steps = ['step-welcome', 'step-belief', 'step-guide', 'step-dissolve', 'step-done'];
   var currentStepIndex = 0;
   var currentBelief = '';
@@ -384,8 +396,8 @@ body:has(#step-belief.active) { overflow: auto; height: auto; }
               if (el) el.classList.toggle('active', i === 4);
             }
             currentStepIndex = 4;
-          }, 2000);
-        }, 5000);
+          }, 1000);
+        }, 1700);
       }, 5200);
     }
   }
